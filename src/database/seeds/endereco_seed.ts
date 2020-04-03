@@ -5,9 +5,9 @@ import { popularArray } from '../../Utils/Methods/PopulateSeeds'
 
 export async function seed (knex: Knex): Promise<any> {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('endereco').del()
     .then(() => {
       // Inserts seed entries
-      return knex('table_name').insert(popularArray(knex, 'ENDERECO'))
+      return knex('endereco').insert(popularArray(knex, 'ENDERECO'))
     })
 };

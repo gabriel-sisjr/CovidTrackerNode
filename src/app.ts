@@ -18,6 +18,8 @@ class App {
       this.express.use(express.json())
       // Permitindo o acesso remoto de qualquer lugar a essa aplicação.
       this.express.use(cors())
+
+      this.express.disable('x-powered-by')
     }
 
     private routes (): void {
