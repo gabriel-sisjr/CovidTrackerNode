@@ -6,7 +6,7 @@ import { connection } from '../database/connection'
 class UsuarioController {
   public async getAll (req: Request, res: Response): Promise<Response> {
     // const usuarios: Array<Usuario> = []
-    const itens = await connection().select().from<Usuario>('usuarios')
+    const itens = await connection().table<Usuario>('usuarios')
     return res.json(itens)
   }
 
@@ -26,8 +26,10 @@ class UsuarioController {
     const { id } = req.params
 
     try {
-      const sucesso = await connection().table<Usuario>('usuarios').where('ID', Number(id))
-      return res.json(sucesso)
+      // Tipagem no table pra auxiliar o Where.
+      // Tipagem no first, pra tipar o retorno e facilitar a manipulação.
+      const user = await connection().table<Usuario>('usuarios').where('ID', Number(id)).first<Usuario>()
+      return res.json(user)
     } catch (err) {
       return res.json(err)
     }
