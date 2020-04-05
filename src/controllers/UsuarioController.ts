@@ -5,9 +5,9 @@ import { connection } from '../database/connection'
 
 class UsuarioController {
   public async getAll (req: Request, res: Response): Promise<Response> {
-    // const usuarios: Array<Usuario> = []
-    const itens = await connection().table<Usuario>('usuarios')
-    return res.json(itens)
+    // Forçando o retorno ser usuario.
+    const users = await connection().table('usuarios').select<Usuario>()
+    return res.json(users)
   }
 
   public async create (req: Request, res: Response): Promise<Response> {

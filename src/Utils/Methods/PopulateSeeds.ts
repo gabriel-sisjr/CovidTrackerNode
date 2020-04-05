@@ -66,8 +66,7 @@ function tipoModel (tipoObjeto: string, knex: Knex): any {
 
 // populando o array
 export function popularArray (knex: Knex, tipoObjeto: string): Array<any> {
-  const obj = tipoModel(tipoObjeto, knex)
-  const itens: Array<typeof obj> = []
+  const itens: Array<any> = []
 
   for (let index = 0; index < (Math.floor(Math.random() * 100) + 1); index++) itens.push(tipoModel(tipoObjeto, knex))
 
